@@ -1,18 +1,25 @@
 fetch("http://localhost:3000/api/products")
 .then((response) => response.json())
-.then((data) => addProducts(data))
+.then((data) => {
+  console.log(data)
+  return addProducts(data)
+})
 
 function addProducts(produits) {
-
-    const imageUrl = produits[0].imageUrl
-    console.log("Url de l'image", imageUrl)
-    
+    const id = produits[0]._id
+    const aremplacer = makeAremplancer(id)
+    appendChildren(aremplacer)
+  }
+  
+  function makeAremplancer(id) {
     const aremplacer = document.createElement("a")
-    aremplacer.href = imageUrl
-    aremplacer.text = "Un super Canap"
-    
+    aremplacer.href = "./product.html?id=" + id
+    return aremplacer
+  }
+  
+  function appendChildren(aremplacer) {
     const items = document.querySelector("#items")
     if (items != null) {
       items.appendChild(aremplacer) 
-    }  
+    }    
 }
