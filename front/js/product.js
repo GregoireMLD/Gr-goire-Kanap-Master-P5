@@ -8,9 +8,9 @@ if (id != null) {
 
 fetch(`http://localhost:3000/api/products/${id}`)
 .then(response => response.json())
-.then((res) => handleData(res))
+.then((res) => Datas(res))
 
-function handleData(data) {
+function Datas(data) {
     const altTxt = data.altTxt
     const colors = data.colors
     const description = data.description
@@ -20,14 +20,14 @@ function handleData(data) {
     itemPrice = price
     imgUrl = imageUrl
     altText = altTxt
-    makeImage(imageUrl, altTxt)
-    makecolors(colors)
-    makeDescription(description)
-    makeTitle(name)
-    makePrice(price)
+    AddImage(imageUrl, altTxt)
+    Addcolors(colors)
+    AddDescription(description)
+    AddTitle(name)
+    AddPrice(price)
 }
 
-function makeImage(imageUrl, altTxt) {
+function AddImage(imageUrl, altTxt) {
     const image = document.createElement('img')
     image.src = imageUrl
     image.alt = altTxt
@@ -35,22 +35,22 @@ function makeImage(imageUrl, altTxt) {
     if (parent != null) parent.appendChild(image)
 }
 
-function makeTitle(name) {
+function AddTitle(name) {
     const h1 = document.querySelector("#title")
     if (h1 != null) h1.textContent = name
 }
 
-function makePrice(price) {
+function AddPrice(price) {
     const span = document.querySelector("#price")
     if (span != null) span.textContent = price
 }
 
-function makeDescription(description) {
+function AddDescription(description) {
     const p = document.querySelector("#description")
     if (p != null) p.textContent = description
 }
 
-function makecolors(colors) {
+function Addcolors(colors) {
     const select = document.querySelector("#colors")
     if (select != null) {
         colors.forEach((color) => {

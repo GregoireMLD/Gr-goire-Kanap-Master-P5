@@ -2,6 +2,7 @@ fetch("http://localhost:3000/api/products")
 .then((response) => response.json())
 .then((data) => addProducts(data))
 
+
 function addProducts(data) {
 
     // for (let i = 0; i < data.length;i++) {
@@ -15,14 +16,14 @@ function addProducts(data) {
       const name = kanap.name
       const description = kanap.description
       
-      const aremplacer = makeAremplacer(_id)   
+      const remp = AddRemp(_id)   
       const article = document.createElement("article")
-      const image = makeImage(imageUrl, altTxt)
-      const h3 = makeH3(name)
-      const p = makeParagraph(description)
+      const image = AddImage(imageUrl, altTxt)
+      const h3 = AddH3(name)
+      const p = AddParagraph(description)
       
       appendElementsToArticle(article, [image, h3, p])
-      appendArticleToAremplacer(aremplacer, article)
+      appendArticleToRemp(remp, article)
     })
   }
   
@@ -33,35 +34,35 @@ function addProducts(data) {
   }
 
   
-  function makeAremplacer(id) {
-    const aremplacer = document.createElement("a")
-    aremplacer.href = "./product.html?id=" + id
-    return aremplacer
+  function AddRemp(id) {
+    const remp = document.createElement("a")
+    remp.href = "./product.html?id=" + id
+    return remp
   }
   
-  function appendArticleToAremplacer(aremplacer, article) {
+  function appendArticleToRemp(remp, article) {
     const items = document.querySelector("#items")
     if (items != null) {
-      items.appendChild(aremplacer) 
-      aremplacer.appendChild(article)
+      items.appendChild(remp) 
+      remp.appendChild(article)
     }    
 }
 
-  function makeImage(imageUrl, altTxt) {
+  function AddImage(imageUrl, altTxt) {
     const image = document.createElement("img")
     image.src = imageUrl
     image.alt = altTxt
     return image
   }
 
-  function makeH3(name) {
+  function AddH3(name) {
     const h3 = document.createElement("h3")
     h3.textContent = name
     h3.classList.add("productName")
     return h3
   }
 
-  function makeParagraph(description) {
+  function AddParagraph(description) {
     const p = document.createElement("p")
     p.textContent = description
     p.classList.add("productDescription")
