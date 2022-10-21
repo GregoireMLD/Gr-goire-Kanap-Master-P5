@@ -3,7 +3,7 @@ const urlParams = new URLSearchParams(queryString)
 const id = urlParams.get("id")
 if (id != null) {
     let itemPrice = 0
-    let imgUrl, altText
+    let imgUrl, altText, articleName
 }
 
 fetch(`http://localhost:3000/api/products/${id}`)
@@ -20,6 +20,7 @@ function Datas(data) {
     itemPrice = price
     imgUrl = imageUrl
     altText = altTxt
+    articleName = name
     AddImage(imageUrl, altTxt)
     Addcolors(colors)
     AddDescription(description)
@@ -81,7 +82,8 @@ function saveCart(color, quantity) {
         quantity: Number(quantity),
         price : itemPrice,
         imageUrl: imgUrl,
-        altTxt: altText
+        altTxt: altText,
+        name: articleName
     }
     localStorage.setItem(id, JSON.stringify(data))   
 }
