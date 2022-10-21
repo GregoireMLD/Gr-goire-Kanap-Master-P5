@@ -89,6 +89,7 @@ function saveCart(color, quantity) {
 function isOrderInvalid(color, quantity) {
 if (color == null || color === "") {
     alert("Veuillez choisir une couleur.")
+    return true
 }
  if (quantity == null || quantity == 0) {
     alert("Veuillez choisir le nombre de canapé shouaitez.")    

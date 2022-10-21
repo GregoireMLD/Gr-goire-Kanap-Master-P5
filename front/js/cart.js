@@ -133,6 +133,7 @@ const cart = []
         localStorage.setItem(key, dataToSave)
     }
 
+    // La description de l'objet dans l'ordre : nom, couleur, prix
     function AddDescription(item) {
         const description = document.createElement("div")
         description.classList.add("cart__item__content__description")
@@ -173,6 +174,7 @@ const cart = []
     return div
     }
 
+    // Lorsque qu'on clique sur le bouton, le panier s'envoie dans la page confirmation si et seulement si le panier possède un objet  
     function submitForm(e) {
     e.preventDefault()
         if (cart.length === 0) {
@@ -180,18 +182,21 @@ const cart = []
             return
         }
 
-        if (isFormInvalid()) return
-        if (isEmailInvalid()) return
+        if (isFormInvalid()) return 
+        if (isEmailInvalid()) return 
 
         const body = AddRequestBody()
+        // -------  Envoi de la requête POST au back-end --------
+        // Création de l'entête de la requête
         fetch("http://localhost:3000/api/products/order", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
-            "Content-Type": "application/json"
+                "Content-Type": "application/json"
             }
+            // Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
         })
-            .then((res) => res.json())
+        .then((res) => res.json())
             .then((data) => {
             const orderId = data.orderId
             window.location.href = "/front/html/confirmation.html" + "?orderId=" + orderId

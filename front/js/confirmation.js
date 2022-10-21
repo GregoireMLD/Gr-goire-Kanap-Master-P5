@@ -13,6 +13,7 @@ const orderId = getOrderId()
     orderIdElement.textContent = orderId
   }
 
+  // On vide le localStorage pour recommencer plus tard le processus d'achat
   function removeAllCache() {
     const cache = window.localStorage
     cache.clear()
